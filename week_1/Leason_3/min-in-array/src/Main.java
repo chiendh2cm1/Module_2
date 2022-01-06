@@ -2,8 +2,8 @@ public class Main {
 
     public static void main(String[] args) {
         int[] arr = {2, 5, 12, 6, 8, 23, 9};
-        int index = minValue(arr);
-        System.out.println("The smallest element in the array is: " + arr[index]);
+        int indexMin = minValue(arr);
+        System.out.println("The smallest element in the array is: " + arr[indexMin]);
     }
 
     public static int minValue(int[] array) {
