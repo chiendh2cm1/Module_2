@@ -16,11 +16,12 @@ public class Main {
         if (index_del == -1) {
             System.out.println(" Phần tử bạn nhập không có trong mảng");
         } else {
-            array = deleteElement(array, index_del );
-        }
-        System.out.println(" Dãy số sau khi xóa");
-        for (int i = 0; i <array.length; i ++){
-            System.out.print(array[i] + "\t");
+            array = deleteElement(array, index_del);
+
+            System.out.println(" Dãy số sau khi xóa");
+            for (int i = 0; i < array.length; i++) {
+                System.out.print(array[i] + "\t");
+            }
         }
     }
 
@@ -35,13 +36,14 @@ public class Main {
         return index;
     }
 
-    static int[] deleteElement(int[] arr, int index){
-        int[] newArray = new int[arr.length-1];
-        for (int i = 0; i < index;i++){
-            newArray[i] = arr[i];
-        }
-        for (int i = index +1;i <arr.length;i++){
-            newArray[i-1] = arr[i];
+    static int[] deleteElement(int[] arr, int index) {
+        int[] newArray = new int[arr.length - 1];
+        for (int i = 0; i < newArray.length; i++) {
+            if (i < index) {
+                newArray[i] = arr[i];
+            } else {
+                newArray[i] = arr[i + 1];
+            }
         }
         return newArray;
     }

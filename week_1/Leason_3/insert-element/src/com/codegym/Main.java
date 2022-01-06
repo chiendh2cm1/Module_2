@@ -37,12 +37,14 @@ public class Main {
 
     public static int[] insertElement(int[] arr, int x, int index) {
         int[] newArray = new int[arr.length + 1];
-        for (int i = 0; i < index; i++) {
-            newArray[i] = arr[i];
-        }
-        newArray[index] = x;
-        for (int i = index + 1; i < newArray.length; i++) {
-            newArray[i] = arr[i - 1];
+        for (int i = 0; i < newArray.length; i++) {
+            if (i < index){
+                newArray[i] = arr[i];
+            }else if (i == index) {
+                newArray[index] = x;
+            }else {
+                newArray[i] = arr[i-1];
+            }
         }
         return newArray;
     }
