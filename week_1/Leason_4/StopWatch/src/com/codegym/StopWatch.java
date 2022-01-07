@@ -4,33 +4,35 @@ package com.codegym;
 import java.time.LocalTime;
 
 public class StopWatch {
-    private LocalTime startTime, endTime;
+   private long startTime;
+   private long endTime;
 
     public StopWatch() {
-        this.startTime = LocalTime.now();
-    }
-    public StopWatch(LocalTime startTime, LocalTime endTime){
-        this.startTime = startTime;
-        this.endTime = endTime;
+        this.startTime = System.currentTimeMillis();
     }
 
-    public LocalTime getStartTime() {
+    public long getStartTime() {
         return startTime;
     }
 
-    public LocalTime getEndTime() {
+    public void setStartTime(long startTime) {
+        this.startTime = startTime;
+    }
+
+    public long getEndTime() {
         return endTime;
     }
 
-    public LocalTime start() {
-        return this.startTime;
+    public void setEndTime(long endTime) {
+        this.endTime = endTime;
     }
-    public LocalTime stop() {
-        return this.endTime;
+    public void start(){
+        this.startTime = System.currentTimeMillis();
     }
-    public int getElapsedTime() {
-        int miliSecond = ((endTime.getHour()- startTime.getHour())*3600 + (endTime.getMinute() - startTime.getMinute())*60 +(endTime.getSecond()-startTime.getSecond()))*1000;
-        return miliSecond;
+    public void end(){
+        this.endTime = System.currentTimeMillis();
     }
-
+    public long getElapsedTime(){
+        return this.endTime - this.startTime;
+    }
 }
