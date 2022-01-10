@@ -49,17 +49,6 @@ public class Product {
     public void setdescription(String description) {
         this.description = description;
     }
-
-    @Override
-    public String toString() {
-        return "ProductLish{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", description='" + description + '\'' +
-                '}';
-    }
-
     public void input() {
         Scanner sc = new Scanner(System.in);
         System.out.print("input id: ");
