@@ -1,80 +1,108 @@
 package com.codegym;
 
+
 import java.util.Scanner;
 
 public class Main {
+    public static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        KhachSan khachSan = new KhachSan();
+        HotelManagement hotelManagemnet = new HotelManagement();
         int choice;
         menu();
         do {
-            System.out.println("Mời nhập lừa chọn:");
+            System.out.println("Nhập lựa chọn của bạn: ");
             choice = sc.nextInt();
             switch (choice) {
-                case 0: {
-                    break;
+                case 0:{
                 }
                 case 1: {
-                    KhachTro khachTro = new KhachTro();
-                    System.out.println("Nhập số lượng khách trọ: ");
-                    int n = sc.nextInt();
-                    for (int i = 0; i < n; i++) {
-                        System.out.println("khách trọ thứ " + (i + 1));
-                        khachTro.nhapThongTin();
-                        khachSan.themKhachTro(khachTro);
-                        sc.nextLine();
-                        break;
-                    }
+                    System.out.println("---Danh sách khách sạn---");
+                    hotelManagemnet.displayAllHotel();
+                    break;
                 }
                 case 2: {
-                    System.out.println("---Thêm Khách Trọ---");
-                    KhachTro khachTro = new KhachTro();
-                    System.out.println("Nhập thông tin khách trọ: ");
-                    khachTro.nhapThongTin();
-                    khachSan.themKhachTro(khachTro);
+                    System.out.println("---Thêm thông tin khách sạn---");
+                    System.out.println("Nhập vị trí cần thêm: ");
+                    int index = sc.nextInt();
+                    if (index < 0 || index > hotelManagemnet.size()) {
+                        System.out.println("Vị trí thêm không hợp lệ");
+                    } else {
+                        Hotel hotel = getHotel();
+                        hotelManagemnet.addNewHotel(index, hotel);
+                    }
                     break;
                 }
                 case 3: {
-                    System.out.println("---Xóa Khách Trọ---");
-                    KhachTro khachTro = new KhachTro();
-                    sc.nextLine();
-                    System.out.println("Nhập tên khách cần xóa: ");
-                    String name = sc.nextLine();
-                    khachTro.setName(name);
-                    khachSan.xoaKhachTro(khachTro);
+                    System.out.println("---Chỉnh sửa tin khách sạn---");
+                    System.out.println("Nhập vị trí cần chỉnh sửa: ");
+                    int index = sc.nextInt();
+                    if (index < 0 || index >= hotelManagemnet.size()) {
+                        System.out.println("Vị trí thêm không hợp lệ");
+                    } else {
+                        Hotel hotel = getHotel();
+                        hotelManagemnet.updateHotel(index, hotel);
+                    }
                     break;
                 }
                 case 4: {
-                    System.out.println("---Tính tiền---");
-                    System.out.println("Nhập CMT khách trọ cần thanh toán: ");
+                    System.out.println("---Xóa thông tin khách sạn---");
+                    System.out.println("Nhập vị trí cần xóa: ");
+                    int index = sc.nextInt();
+                    if (index < 0 || index > hotelManagemnet.size()) {
+                        System.out.println("Vị trí thêm không hợp lệ");
+                    } else {
+                        hotelManagemnet.removeHotel(index);
+                    }
+                    break;
+                }
+                case 5:{
+                    System.out.println("---Tính tiền theo chứng minh nhân dân---");
                     sc.nextLine();
-                    String CMT = sc.nextLine();
-                    System.out.println(" Số tền cần thanh toán là: " + khachSan.tinhTien(CMT) + " VND");
+                    System.out.println("Nhập số chứng minh nhân dân cần thanh toán:");
+                    String identity = sc.nextLine();
+                    System.out.println("Số tiền cần thanh toán là: ");
+                    System.out.println(hotelManagemnet.payment(identity) + " VND");
                     break;
                 }
-                case 5: {
-                    khachSan.hienThiDanhSach();
-                    break;
-                }
-                default: {
-                    System.out.println("Số bạn nhập phải trong khoảng 0 đến 5");
-                    break;
+                default:{
+                    System.out.println(" Mời bạn nhập tỏng khoảng từ 0 đến 5");
                 }
             }
-
         } while (choice != 0);
     }
 
-    public static void menu() {
-        System.out.println("---Quản Lý Khách Sạn---");
-        System.out.println("1. Nhập số lượng khách trọ.");
-        System.out.println("2. Thêm khách trọ.");
-        System.out.println("3. Xóa khách trọ.");
-        System.out.println("4. Tính tiền khi khách trả phòng.");
-        System.out.println("5. Hiển thị danh sách khách trọ");
-        System.out.println(" Thoát chương trình.");
+    private static Hotel getHotel() {
+        Person person = getPerson();
+        System.out.println("Nhập số ngày trọ:");
+        int rentdays = sc.nextInt();
+        sc.nextLine();
+        System.out.println("Nhập loại phòng trọ:");
+        String type = sc.nextLine();
+        System.out.println(" Nhập giá phòng:");
+        double price = sc.nextDouble();
+        return new Hotel(rentdays, type, price, person);
+    }
 
+    private static Person getPerson() {
+        sc.nextLine();
+        System.out.println("Nhập thông tin khách trọ");
+        System.out.println("Nhập tên khách trọ:");
+        String name = sc.nextLine();
+        System.out.println("Nhập ngày sinh:");
+        String dateOfBirth = sc.nextLine();
+        System.out.println("Nhập chứng minh nhân dân:");
+        String indentity = sc.nextLine();
+        return new Person(name, dateOfBirth, indentity);
+    }
+
+    private static void menu() {
+        System.out.println("---Menu quản lý khách sạn");
+        System.out.println("1. Hiển thị tất cả thông tin");
+        System.out.println("2. Thêm thông tin khách sạn");
+        System.out.println("3. Cập nhập thông tin khách sạn");
+        System.out.println("4. Xóa thông tin khách sạn");
+        System.out.println("5. Tính tiền theo Chứng minh thư");
+        System.out.println("0. Thoát chương trình");
     }
 }
