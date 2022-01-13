@@ -1,6 +1,5 @@
 package com.codegym;
 
-import java.util.Date;
 import java.util.Scanner;
 
 public class KhachTro extends Nguoi {
@@ -17,7 +16,7 @@ public class KhachTro extends Nguoi {
         this.giaPhong = giaPhong;
     }
 
-    public KhachTro(String name, Date ngaySinh, String CMT, double soNgayTro, String loaiPhongTro, double giaPhong) {
+    public KhachTro(String name, String ngaySinh, String CMT, double soNgayTro, String loaiPhongTro, double giaPhong) {
         super(name, ngaySinh, CMT);
         this.soNgayTro = soNgayTro;
         this.loaiPhongTro = loaiPhongTro;
@@ -30,9 +29,10 @@ public class KhachTro extends Nguoi {
         Scanner sc = new Scanner(System.in);
         System.out.println("Nhập số ngày trọ: ");
         this.soNgayTro = sc.nextDouble();
+        sc.nextLine();
         System.out.println(" Nhập loại phòng trọ: ");
         this.loaiPhongTro = sc.nextLine();
-        System.out.println("Nhập giá phòng");
+        System.out.println("Nhập giá phòng: ");
         this.giaPhong = sc.nextDouble();
     }
 
@@ -41,7 +41,7 @@ public class KhachTro extends Nguoi {
         super.hienThongTin();
         System.out.println("Số ngày trọ: " + this.soNgayTro
                 + "\n" + "Loại phòng trọ: " + this.loaiPhongTro
-                + "\n" + "Giá phòng");
+                + "\n" + "Giá phòng: " + this.giaPhong);
     }
 
     public double getSoNgayTro() {

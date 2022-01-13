@@ -49,7 +49,7 @@ public class Product {
     public void setdescription(String description) {
         this.description = description;
     }
-    public void input() {
+    public void inputProduct() {
         Scanner sc = new Scanner(System.in);
         System.out.print("input id: ");
         id = sc.nextInt();

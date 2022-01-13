@@ -4,15 +4,15 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        int n;
+        int ProductAmount;
         System.out.print(" Nhập số lượng sản phẩm: ");
         Scanner sc = new Scanner(System.in);
-        n = sc.nextInt();
-        Product[] productsLish = new Product[n];
+        ProductAmount = sc.nextInt();
+        Product[] productsLish = new Product[ProductAmount];
         for (int i = 0; i < productsLish.length; i++) {
             productsLish[i] = new Product();
             System.out.println("nhập sản phẩm thứ " + (i + 1));
-            productsLish[i].input();
+            productsLish[i].inputProduct();
         }
         int choice;// nhập giá trị của người dùng.
         do {
@@ -33,13 +33,13 @@ public class Main {
                     System.out.println("---Thêm sản phẩm---");
                     System.out.println("\nNhập thông tin sản phẩm: ");
                     Product productNew = new Product();
-                    productNew.input();
+                    productNew.inputProduct();
                     System.out.print("\nNhập vị trí cần thêm: ");
                     int indexNew = sc.nextInt();
                     if (indexNew < 0 || indexNew > productsLish.length) {
                         System.out.println(" không thêm được sản phẩm");
                     } else {
-                        productsLish = insertObj(productsLish, productNew, indexNew);
+                        productsLish = insertProduct(productsLish, productNew, indexNew);
                         displayProductLish(productsLish);
                     }
                     break;
@@ -53,7 +53,7 @@ public class Main {
                     } else {
                         System.out.println("Cập nhập thông tin sản phẩm: ");
                         Product productAccess = new Product();
-                        productAccess.input();
+                        productAccess.inputProduct();
                         productsLish[index] = productAccess;
                     }
                     break;
@@ -63,11 +63,11 @@ public class Main {
                     sc.nextLine();
                     System.out.println("\nNhập tên sản phẩm cần xóa: ");
                     String name = sc.nextLine();
-                    int indexDel = searchObj(productsLish, name);
+                    int indexDel = searchProduct(productsLish, name);
                     if (indexDel == -1) {
                         System.out.println("Không có sản phẩm trong mảng");
                     } else {
-                        productsLish = deleteObj(productsLish, indexDel);
+                        productsLish = deleteProduct(productsLish, indexDel);
                         displayProductLish(productsLish);
                     }
                     break;
@@ -82,7 +82,7 @@ public class Main {
                     sc.nextLine();
                     System.out.println("nhập tên của sản phẩm cần tìm: ");
                     String name = sc.nextLine();
-                    int index = searchObj(productsLish, name);
+                    int index = searchProduct(productsLish, name);
                     if (index == -1) {
                         System.out.println("Không tìm thấy sản phẩm");
                     } else {
@@ -98,13 +98,13 @@ public class Main {
         } while (choice != 0);
     }
 
-    public static Product[] insertObj(Product[] arr, Product x, int index) {
+    public static Product[] insertProduct(Product[] arr, Product product, int index) {
         Product[] newProdutsLish = new Product[arr.length + 1];
         for (int i = 0; i < newProdutsLish.length; i++) {
             if (i < index) {
                 newProdutsLish[i] = arr[i];
             } else if (i == index) {
-                newProdutsLish[index] = x;
+                newProdutsLish[index] = product;
             } else {
                 newProdutsLish[i] = arr[i - 1];
             }
@@ -112,7 +112,7 @@ public class Main {
         return newProdutsLish;
     }
 
-    public static int searchObj(Product productsLish[], String name) {
+    public static int searchProduct(Product productsLish[], String name) {
         int index = -1;
         for (int i = 0; i < productsLish.length; i++) {
             if (productsLish[i].getName().equalsIgnoreCase(name)) {
@@ -123,7 +123,7 @@ public class Main {
         return index;
     }
 
-    public static Product[] deleteObj(Product productsLish[], int index) {
+    public static Product[] deleteProduct(Product productsLish[], int index) {
         Product[] newProdutsLish = new Product[productsLish.length - 1];
         for (int i = 0; i < newProdutsLish.length; i++) {
             if (i < index) {
@@ -166,4 +166,5 @@ public class Main {
         }
         displayProductLish(productsLish);
     }
+    
 }
