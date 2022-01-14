@@ -24,7 +24,7 @@ public class ManageReceipts {
     public void addReceipt(int index, Receipt receipt) {
         Receipt[] newReceipts = new Receipt[receipts.length + 1];
         for (int i = 0; i < newReceipts.length; i++) {
-            if (index < i)
+            if (i< index)
                 newReceipts[i] = receipts[i];
             else if (index == i)
                 newReceipts[i] = receipt;
