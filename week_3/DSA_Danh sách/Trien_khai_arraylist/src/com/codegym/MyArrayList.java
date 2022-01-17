@@ -58,13 +58,17 @@ public class MyArrayList<E> {
         this.size--;
     }
 
-    public boolean contains(E e) {
-        for (int i = 0; i < this.size; i++) {
-            if (this.elements[i].equals(e)) {
-                return true;
-            }
+    public int indexOf(E e) {
+        int index = -1;
+        for (int i = 0; i < size; i++) {
+            if (this.elements[i].equals(e))
+                return i;
         }
-        return false;
+        return index;
+    }
+
+    public boolean contains(E e) {
+        return this.indexOf(e) >= 0;
     }
 
     public void clear() {
