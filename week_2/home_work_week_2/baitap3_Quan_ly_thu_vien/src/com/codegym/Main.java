@@ -22,9 +22,6 @@ public class Main {
             System.out.println("Nhập lựa chọn của bạn: ");
             choice = sc.nextInt();
             switch (choice) {
-                case 0:{
-                    break;
-                }
                 case 1: {
                     System.out.println("---Hiển thị danh sách quản lý---");
                     libraryCardManagement.displayArrayList();
@@ -32,12 +29,7 @@ public class Main {
                 }
                 case 2: {
                     System.out.println("---Nhập thông tin sinh viên mượn sách---");
-                    System.out.println("Nhập vị trí cần thêm: ");
-                    int index = sc.nextInt();
-                    sc.nextLine();
-                    Student student = getStudent();
-                    LibraryCard libraryCard = getLibraryCard(student);
-                    libraryCardManagement.addArrayList(index, libraryCard);
+                    inputLibraryCard(libraryCardManagement);
                     break;
                 }
                 case 3: {
@@ -48,31 +40,61 @@ public class Main {
                 }
                 case 4: {
                     System.out.println("--Xóa thông tin sinh viên---");
-                    System.out.println("Nhập tên sinh viên cần xóa khỏi danh sách: ");
-                    String name =sc.nextLine();
-                    libraryCardManagement.removeArrayList(name);
-                }
-
-                case 5:{
-                    System.out.println("---cập nhập thông tin về sinh viên mượn sách---");
-                    System.out.println("Nhập vị trí cần chỉnh sửa: ");
-                    int index = sc.nextInt();
-                    sc.nextLine();
-                    Student student = getStudent();
-                    LibraryCard libraryCard = getLibraryCard(student);
-                    libraryCardManagement.updateArrayList(index, libraryCard);
+                    removeLibraryCard(libraryCardManagement);
                     break;
                 }
-                case 6:{
+
+                case 5: {
+                    System.out.println("---cập nhập thông tin về sinh viên mượn sách---");
+                    updatelibraryCard(libraryCardManagement);
+                    break;
+                }
+                case 6: {
                     System.out.println("---Danh sách tên sinh viên mượn sách cần trả vào cuối tháng---");
                     libraryCardManagement.displayListUserPayBookLastMonth();
                 }
-                default:{
+                default: {
                     System.out.println(" Số bạn nhập phải trong khoảng 0 đến 6!!!");
+                }
+                case 0: {
+                    System.exit(0);
+                    break;
                 }
 
             }
-        } while (choice != 0);
+        } while (choice >= 0 && choice < 7);
+    }
+
+    private static void updatelibraryCard(LibraryCardManagement libraryCardManagement) {
+        System.out.println("Nhập vị trí cần chỉnh sửa: ");
+        int index = sc.nextInt();
+        sc.nextLine();
+        Student student = getStudent();
+        LibraryCard libraryCard = getLibraryCard(student);
+        libraryCardManagement.updateArrayList(index, libraryCard);
+    }
+
+    private static void removeLibraryCard(LibraryCardManagement libraryCardManagement) {
+        System.out.println("Nhập tên sinh viên cần xóa khỏi danh sách: ");
+        String name = sc.nextLine();
+        int flag = 0;
+        for (LibraryCard libraryCard : libraryCardManagement.getLibraryCardArrayList()) {
+            if (libraryCard.getStudent().getName().equalsIgnoreCase(name)) {
+                libraryCardManagement.removeArrayList(libraryCard);
+                flag++;
+            }
+        }
+        if (flag == 0)
+            System.out.println("Không có tên sinh viên cần xóa");
+    }
+
+    private static void inputLibraryCard(LibraryCardManagement libraryCardManagement) {
+        System.out.println("Nhập vị trí cần thêm: ");
+        int index = sc.nextInt();
+        sc.nextLine();
+        Student student = getStudent();
+        LibraryCard libraryCard = getLibraryCard(student);
+        libraryCardManagement.addLibraryCard(index, libraryCard);
     }
 
     private static LibraryCard getLibraryCard(Student student) {

@@ -19,7 +19,7 @@ public class LibraryCardManagement {
         }
     }
 
-    public void addArrayList(int index, LibraryCard libraryCard) {
+    public void addLibraryCard(int index, LibraryCard libraryCard) {
         this.libraryCardArrayList.add(index, libraryCard);
     }
 
@@ -30,25 +30,17 @@ public class LibraryCardManagement {
         }
     }
 
-    public void removeArrayList(String name) {
-        int flag = 0;
-        for (LibraryCard libraryCard : libraryCardArrayList) {
-            if (libraryCard.getStudent().getName().equalsIgnoreCase(name)) {
-                flag++;
-                libraryCardArrayList.remove(libraryCard);
-            }
-        }
-        if (flag == 0)
-            System.out.println("Không có tên sinh viên cần xóa");
+    public void removeArrayList(LibraryCard libraryCard) {
+        this.libraryCardArrayList.remove(libraryCard);
     }
 
     public void updateArrayList(int index, LibraryCard libraryCard) {
         this.libraryCardArrayList.set(index, libraryCard);
     }
 
-    public void displayListUserPayBookLastMonth(){
-        for (LibraryCard libraryCard: libraryCardArrayList){
-            if (libraryCard.getReturnDate().getDate() ==31 || libraryCard.getReturnDate().getDate() ==30) {
+    public void displayListUserPayBookLastMonth() {
+        for (LibraryCard libraryCard : libraryCardArrayList) {
+            if (libraryCard.getReturnDate().getDate() == 31 || libraryCard.getReturnDate().getDate() == 30) {
                 System.out.println(libraryCard);
             }
         }
