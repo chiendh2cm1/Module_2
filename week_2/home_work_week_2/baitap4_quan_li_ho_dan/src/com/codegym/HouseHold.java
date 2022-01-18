@@ -2,14 +2,13 @@ package com.codegym;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.Scanner;
 
 public class HouseHold {
     private int numPeoples;
     private String apartmentNumber;
-    private ArrayList<Peoble> peobles = new ArrayList<>() ;
+    private ArrayList<Peoble> peobles;
 
     public HouseHold() {
         peobles = new ArrayList<>(10);
@@ -37,7 +36,15 @@ public class HouseHold {
         this.apartmentNumber = apartmentNumber;
     }
 
-    public  void inputHouseHold(Scanner sc){
+    public ArrayList<Peoble> getPeobles() {
+        return peobles;
+    }
+
+    public void setPeobles(ArrayList<Peoble> peobles) {
+        this.peobles = peobles;
+    }
+
+    public void inputHouseHold(Scanner sc) {
         System.out.println("Nhập số người trong hộ: ");
         this.numPeoples = sc.nextInt();
         sc.nextLine();
@@ -45,7 +52,7 @@ public class HouseHold {
         this.apartmentNumber = sc.nextLine();
         System.out.println("Nhập các thành viên trong hộ: ");
         for (int i = 0; i < numPeoples; i++) {
-            System.out.println(" thành viên thứ "+ (i +1) +" :");
+            System.out.println("Thành viên thứ " + (i + 1) + " :");
             System.out.println("Nhập tên: ");
             String name = sc.nextLine();
             System.out.println("Nhập ngày sinh: ");
@@ -53,7 +60,7 @@ public class HouseHold {
             Date dateOfbirth = strToDate(strDateOfBirth);
             System.out.println("Nhập nghề nghiệp: ");
             String job = sc.nextLine();
-            Peoble peoble = new Peoble(name,dateOfbirth,job);
+            Peoble peoble = new Peoble(name, dateOfbirth, job);
             peobles.add(peoble);
         }
     }
@@ -69,13 +76,14 @@ public class HouseHold {
         return date;
     }
 
-    public void displayHouseHold(){
+    public void displayHouseHold() {
+        System.out.println("{");
         System.out.println("Số người: " + this.numPeoples);
         System.out.println("Số nhà: " + this.apartmentNumber);
         System.out.println("Thông tin các thành viên trong hộ: ");
         for (int i = 0; i < numPeoples; i++) {
             System.out.println(peobles.get(i));
         }
-        System.out.println();
+        System.out.println("}");
     }
 }

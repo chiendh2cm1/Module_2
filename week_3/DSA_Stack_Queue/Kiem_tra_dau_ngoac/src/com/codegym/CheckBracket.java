@@ -1,10 +1,7 @@
 package com.codegym;
 
 import java.util.Stack;
-
-
-
-public class Main {
+public class CheckBracket {
     public static void main(String[] args) {
         String string1 = "s * (s – a) * (s – b) * (s – c)";
         String string2 = "(– b + (b2 – 4*a*c)^0.5) / 2*a";
