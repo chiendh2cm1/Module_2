@@ -51,7 +51,7 @@ public class ProductManager {
         productList.sort(new Comparator<Product>() {
             @Override
             public int compare(Product o1, Product o2) {
-                return Double.compare(o1.getPrice(), o2.getPrice()); // sắp xêp giảm dần thì đổi o1, o2
+                return Double.compare(o1.getPrice(), o2.getPrice()); // sắp xêp giảm dần thì đổi o1, o2 hoặc sort thành reverse
             }
         });
         ShowProductList();
