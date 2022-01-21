@@ -7,7 +7,6 @@ public class SelectionSort {
     public static void selectionSort(double[] list) {
         int N = list.length;
         for (int i = 0; i < N; i++) {
-//            double Min = list[i];
             int minIndex = i;
             for (int j = i + 1; j < N; j++) {
                 if (list[minIndex] > list[j]) {
