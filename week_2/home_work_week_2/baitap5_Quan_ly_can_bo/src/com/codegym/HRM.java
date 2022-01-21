@@ -13,7 +13,9 @@ public class HRM {  //Quản lý
     public HRM() {
     }
 
-
+    public int SIZE(){
+        return cadresList.size();
+    }
 
     public void addCadres(Cadres cadres) {
         cadresList.add(cadres);
@@ -44,6 +46,4 @@ public class HRM {  //Quản lý
             System.out.println(cadres);
         }
     }
-
-
 }
