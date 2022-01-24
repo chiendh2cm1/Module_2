@@ -53,7 +53,7 @@ public class Main {
                     break;
                 }
             }
-        } while (choice >= 0 && choice < 5);
+        } while (choice < 0 || choice > 5);
 
     }
 
@@ -68,37 +68,35 @@ public class Main {
         String sex = sc.nextLine();
         System.out.println("Nhập địa chỉ:");
         String adress = sc.nextLine();
-        System.out.println("Cán bộ bạn cần nhập là: (1.Kĩ sư; 2.Công nhân; 3.Nhân viên; 0.Thoát)");
-        int choice2 = sc.nextInt();
+        int choice2;
         Cadres cadres = new Cadres();
-        switch (choice2) {
-            case 1:
-                sc.nextLine();
-                System.out.println("Nhập ngành đào tạo cần quản lý: ");
-                String trainingIndustry = sc.nextLine();
-                cadres = new Engineer(name, dateOfBirth, sex, adress, trainingIndustry);
-                break;
-            case 2:
-                sc.nextLine();
-                System.out.println("Nhập bậc nghề: ");
-                String tier = sc.nextLine();
-                cadres = new Worker(name, dateOfBirth, sex, adress, tier);
-                break;
-            case 3:
-                sc.nextLine();
-                System.out.println("Nhập công viêc: ");
-                String work = sc.nextLine();
-                cadres = new Staff(name, dateOfBirth, sex, adress, work);
-                break;
-            case 0:
-                System.exit(0);
-                break;
-            default:
-                System.out.println("Nhập trong khoảng từ 0 đến 3.");
-                ;
-                break;
-        }
-        hrm.addCadres(cadres);
+        do {
+            System.out.println("Cán bộ bạn cần nhập là: (1.Kĩ sư; 2.Công nhân; 3.Nhân viên; 0.Thoát)");
+            choice2 = sc.nextInt();
+            switch (choice2) {
+                case 1:
+                    sc.nextLine();
+                    System.out.println("Nhập ngành đào tạo cần quản lý: ");
+                    String trainingIndustry = sc.nextLine();
+                    cadres = new Engineer(name, dateOfBirth, sex, adress, trainingIndustry);
+                    hrm.addCadres(cadres);
+                    break;
+                case 2:
+                    sc.nextLine();
+                    System.out.println("Nhập bậc nghề: ");
+                    String tier = sc.nextLine();
+                    cadres = new Worker(name, dateOfBirth, sex, adress, tier);
+                    hrm.addCadres(cadres);
+                    break;
+                case 3:
+                    sc.nextLine();
+                    System.out.println("Nhập công viêc: ");
+                    String work = sc.nextLine();
+                    cadres = new Staff(name, dateOfBirth, sex, adress, work);
+                    hrm.addCadres(cadres);
+                    break;
+            }
+        } while (choice2 < 0 || choice2 > 3);
     }
 
     private static void menu() {
