@@ -69,7 +69,7 @@ public class Studentmanagement {
                         if (studentList.get(j).getPoin() > studentList.get(min).getPoin()) {
                             min = j;
                         }
-                        if (min != j) {
+                        if (min != i) {
                             Student temp = studentList.get(min);
                             studentList.set(min, studentList.get(i));
                             studentList.set(i, temp);
@@ -83,7 +83,7 @@ public class Studentmanagement {
                 System.out.println("---insertSort---");
                 int pos;
                 Student x;
-                for (int i = 0; i < size; i++) {
+                for (int i = 1; i < size; i++) {
                     x = studentList.get(i);
                     pos = i;
                     while (pos > 0 && x.getPoin() < studentList.get(pos - 1).getPoin()) {
@@ -139,7 +139,7 @@ public class Studentmanagement {
                 int low = 0;
                 int hight = studentList.size() - 1;
                 while (hight >= low) {
-                    int mid = (hight - low) / 2;
+                    int mid = (hight + low) / 2;
                     if (studentCode.compareTo(studentList.get(mid).getStudentCode()) < 0) {
                         hight = mid - 1;
                     } else if (studentCode.compareTo(studentList.get(mid).getStudentCode()) == 0) {

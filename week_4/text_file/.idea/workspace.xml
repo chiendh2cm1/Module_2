@@ -80,6 +80,8 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -130,6 +132,7 @@
       <option name="presentableId" value="Default" />
       <updated>1643079990353</updated>
       <workItem from="1643079991552" duration="2141000" />
+      <workItem from="1643086138325" duration="51000" />
     </task>
     <servers />
   </component>
