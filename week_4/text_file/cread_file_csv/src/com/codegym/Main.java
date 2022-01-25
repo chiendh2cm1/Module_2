@@ -22,8 +22,8 @@ public class Main {
         System.out.println(
                 "Country [id= "
                         + country.get(0)
-                        + ", code= " + country.get(1)
-                        + " , name=" + country.get(2)
+                        + ", code = " + country.get(1)
+                        + " , name =" + country.get(2)
                         + "]");
     }
 
